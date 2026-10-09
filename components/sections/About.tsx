@@ -10,6 +10,7 @@ type Founder = {
   bio: string;
   photo: string;
   linkedin: string;
+  portfolio: string;
 };
 
 // TODO : remplacer les placeholders ci-dessous avant la mise en ligne.
@@ -20,6 +21,8 @@ type Founder = {
 //  - photo    : remplacer les fichiers public/images/fondateur-1.jpg et
 //               fondateur-2.jpg par de vraies photos (carrées, 400 px minimum)
 //  - linkedin : l'adresse complète du profil (https://www.linkedin.com/in/...)
+//  - portfolio : l'adresse complète du portfolio (https://...). Une fois
+//               renseignée, la photo, le nom et un bouton y mènent.
 const founders: Founder[] = [
   {
     name: "Romuald Mbe Signe",
@@ -27,6 +30,7 @@ const founders: Founder[] = [
     bio: "[Rôle ou spécialité : à compléter]",
     photo: "/images/fondateur-1.jpg",
     linkedin: "#",
+    portfolio: "https://romuald-mbe-signe.pages.dev",
   },
   {
     name: "Marc Sylvinho Tsafack",
@@ -34,8 +38,41 @@ const founders: Founder[] = [
     bio: "[Rôle ou spécialité : à compléter]",
     photo: "/images/fondateur-2.jpg",
     linkedin: "#",
+    portfolio: "https://portfolio-marcsylvinho.pages.dev",
   },
 ];
+
+const linkClass =
+  "mt-5 inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 text-sm font-semibold text-zinc-100 transition-colors duration-300 hover:border-emerald-400/60 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400";
+
+// Rend la photo et le nom cliquables quand le portfolio est renseigné.
+// Le bouton « Voir le portfolio » reste le lien de référence au clavier.
+function ProfileLink({
+  founder,
+  className,
+  hidden = false,
+  children,
+}: {
+  founder: Founder;
+  className?: string;
+  hidden?: boolean; // lien doublon : masqué au clavier et aux lecteurs d'écran
+  children: React.ReactNode;
+}) {
+  if (!founder.portfolio.startsWith("http")) return <>{children}</>;
+  return (
+    <a
+      href={founder.portfolio}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-hidden={hidden || undefined}
+      tabIndex={hidden ? -1 : undefined}
+      aria-label={hidden ? undefined : `Portfolio de ${founder.name}`}
+      className={className}
+    >
+      {children}
+    </a>
+  );
+}
 
 const workingPrinciples = [
   "Un échange clair au départ, pour bien comprendre votre besoin.",
@@ -117,42 +154,68 @@ export default function About() {
                     mi-hauteur ; preserve-3d transmet la profondeur aux étages. */}
                 <article className="flex h-full flex-col items-start gap-5 [transform-style:preserve-3d] sm:flex-row sm:items-center sm:gap-6">
                   <TiltLayer depth={36} className="shrink-0">
-                    <Image
-                      src={founder.photo}
-                      alt={`Photo de ${founder.name}`}
-                      width={400}
-                      height={400}
-                      className="h-24 w-24 rounded-full object-cover ring-2 ring-white/15 sm:h-28 sm:w-28"
-                    />
+                    <ProfileLink
+                      founder={founder}
+                      hidden
+                      className="group/photo block rounded-full"
+                    >
+                      <Image
+                        src={founder.photo}
+                        alt={`Photo de ${founder.name}`}
+                        width={400}
+                        height={400}
+                        className="h-24 w-24 rounded-full object-cover ring-2 ring-white/15 transition-shadow duration-300 group-hover/photo:ring-emerald-400/70 sm:h-28 sm:w-28"
+                      />
+                    </ProfileLink>
                   </TiltLayer>
                   <div className="flex flex-col items-start [transform-style:preserve-3d]">
                     <TiltLayer depth={16}>
                       <h4 className="font-display text-lg font-semibold text-zinc-50">
-                        {founder.name}
+                        <ProfileLink
+                          founder={founder}
+                          hidden
+                          className="rounded transition-colors duration-300 hover:text-emerald-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-400"
+                        >
+                          {founder.name}
+                        </ProfileLink>
                       </h4>
                     </TiltLayer>
                     <p className="mt-1 font-mono text-xs uppercase tracking-wider text-emerald-300">
                       {founder.role}
                     </p>
-                    {/* Le parcours et le lien LinkedIn ne s'affichent qu'une fois
+                    {/* Le parcours et les liens ne s'affichent qu'une fois
                         renseignés : un placeholder ne doit pas être visible en ligne. */}
                     {!founder.bio.startsWith("[") && (
                       <p className="mt-3 text-sm leading-relaxed text-zinc-400">
                         {founder.bio}
                       </p>
                     )}
-                    {founder.linkedin.startsWith("http") && (
-                      <a
-                        href={founder.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Profil LinkedIn de ${founder.name}`}
-                        className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 text-sm font-semibold text-zinc-100 transition-colors duration-300 hover:border-emerald-400/60 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400"
-                      >
-                        <span aria-hidden="true">↗</span>
-                        LinkedIn
-                      </a>
-                    )}
+                    <div className="flex flex-wrap gap-x-3">
+                      {founder.portfolio.startsWith("http") && (
+                        <a
+                          href={founder.portfolio}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Portfolio de ${founder.name}`}
+                          className={linkClass}
+                        >
+                          <span aria-hidden="true">↗</span>
+                          Voir le portfolio
+                        </a>
+                      )}
+                      {founder.linkedin.startsWith("http") && (
+                        <a
+                          href={founder.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Profil LinkedIn de ${founder.name}`}
+                          className={linkClass}
+                        >
+                          <span aria-hidden="true">↗</span>
+                          LinkedIn
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </article>
               </TiltCard>
