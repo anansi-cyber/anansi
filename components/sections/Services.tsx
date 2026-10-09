@@ -33,13 +33,11 @@ type Service = {
   concretely: string;
   stages: Stage[];
   deliverables: string[];
-  delays: string[];
   // Dernier bloc de la fiche, facultatif (ex. "Ce dont nous avons besoin").
   extra?: { title: string; items: string[] };
 };
 
 // Pour ajouter un service : ajouter un bloc à ce tableau.
-// TODO : les délais sont des estimations, à valider avant la mise en ligne.
 const services: Service[] = [
   {
     title: "Développement",
@@ -62,10 +60,6 @@ const services: Service[] = [
       "L'accès à votre hébergement et à votre domaine",
       "Une formation de 30 minutes",
       "Un mode d'emploi simple",
-    ],
-    delays: [
-      "Site vitrine : 2 à 3 semaines, avec vos textes et vos photos",
-      "Application : 1 à 3 mois selon la complexité",
     ],
     extra: {
       title: "Ce dont nous avons besoin",
@@ -98,10 +92,6 @@ const services: Service[] = [
       "La liste des failles, classées par gravité",
       "Les étapes pour les corriger",
     ],
-    delays: [
-      "Audit flash d'un site : 3 à 5 jours",
-      "Pentest applicatif complet : 1 à 3 semaines",
-    ],
     extra: {
       title: "Ce dont nous avons besoin",
       items: [
@@ -132,7 +122,6 @@ const services: Service[] = [
       "La documentation",
       "Une estimation du temps gagné par mois",
     ],
-    delays: ["Diagnostic : 1 semaine", "Chatbot simple : 2 à 4 semaines"],
     extra: {
       title: "À savoir",
       items: [
@@ -166,11 +155,6 @@ const services: Service[] = [
       },
     ],
     deliverables: ["Un rapport écrit", "Une liste d'actions priorisées"],
-    delays: [
-      "Durcissement d'un serveur : 2 à 3 jours",
-      "Audit de code : 1 à 2 semaines",
-      "RGPD : 2 à 4 semaines",
-    ],
   },
 ];
 
@@ -274,19 +258,6 @@ function ServiceCard({
           {service.description}
         </p>
 
-        {/* Délais repris tels quels : les raccourcir en changerait le sens. */}
-        <ul
-          aria-label="Délais indicatifs"
-          className="mt-5 space-y-2 border-t border-white/10 pt-4 text-xs leading-relaxed text-zinc-300"
-        >
-          {service.delays.map((delay) => (
-            <li key={delay} className="flex items-start gap-2">
-              <span aria-hidden="true" className={`${dotClass} mt-1.5`} />
-              {delay}
-            </li>
-          ))}
-        </ul>
-
         <TiltLayer depth={12} className="mt-4 w-fit">
           <button
             type="button"
@@ -343,7 +314,7 @@ export default function Services() {
         <SectionHeading
           index="01"
           title="Nos services"
-          subtitle="Ouvrez une carte pour voir le détail : déroulé, livrables et délais."
+          subtitle="Ouvrez une carte pour voir le détail : déroulé et livrables."
         />
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2">
@@ -463,30 +434,17 @@ export default function Services() {
 
         <div
           style={stagger(selected.stages.length + 1)}
-          className="dialog-item mt-8 grid gap-8 border-t border-white/10 pt-6 sm:grid-cols-2"
+          className="dialog-item mt-8 border-t border-white/10 pt-6"
         >
-          <div>
-            <h4 className={blockTitleClass}>Vous recevez</h4>
-            <ul className="mt-3 space-y-2 text-sm leading-relaxed text-zinc-400">
-              {selected.deliverables.map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <span aria-hidden="true" className={`${dotClass} mt-2`} />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className={blockTitleClass}>Délais indicatifs</h4>
-            <ul className="mt-3 space-y-2 text-sm leading-relaxed text-zinc-400">
-              {selected.delays.map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <span aria-hidden="true" className={`${dotClass} mt-2`} />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <h4 className={blockTitleClass}>Vous recevez</h4>
+          <ul className="mt-3 space-y-2 text-sm leading-relaxed text-zinc-400">
+            {selected.deliverables.map((item) => (
+              <li key={item} className="flex items-start gap-2">
+                <span aria-hidden="true" className={`${dotClass} mt-2`} />
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
 
         {selected.extra && (

@@ -26,10 +26,6 @@ const steps: Step[] = [
     description: "On écoute votre besoin, gratuitement.",
   },
   {
-    title: "Devis",
-    description: "Un devis clair et détaillé, sous 24h.",
-  },
-  {
     title: "Réalisation",
     description: "On construit, avec des points d'étape réguliers.",
   },
@@ -203,7 +199,7 @@ export default function Process() {
     <section id="methode" className="scroll-mt-20 px-4 py-24 sm:px-6">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          index="03"
+          index="02"
           title="Comment on travaille"
           subtitle="Du premier échange au suivi après le lancement."
         />

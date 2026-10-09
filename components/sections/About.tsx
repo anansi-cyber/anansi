@@ -76,7 +76,6 @@ function ProfileLink({
 
 const workingPrinciples = [
   "Un échange clair au départ, pour bien comprendre votre besoin.",
-  "Un devis détaillé, sans frais cachés.",
   "Des points d'étape réguliers pendant la réalisation.",
   "Un accompagnement après la livraison.",
 ];
@@ -85,7 +84,7 @@ export default function About() {
   return (
     <section id="apropos" className="scroll-mt-20 px-4 py-24 sm:px-6">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading index="04" title="À propos" />
+        <SectionHeading index="03" title="À propos" />
 
         <div className="mt-10 grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           <Reveal delay={0.1}>
@@ -126,7 +125,7 @@ export default function About() {
           <h3 className="font-display text-lg font-semibold text-zinc-50">
             Notre façon de travailler
           </h3>
-          <ul className="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-6 grid gap-8 sm:grid-cols-3">
             {workingPrinciples.map((principle) => (
               <li key={principle} className="relative border-t border-white/10 pt-5">
                 <span

@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
-import { FileText, LifeBuoy, MessageCircle } from "lucide-react";
+import { LifeBuoy, MessageCircle } from "lucide-react";
 import Magnetic from "@/components/ui/Magnetic";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -33,11 +33,6 @@ const steps = [
     label: "Premier échange",
     value: "On écoute votre besoin, gratuitement.",
     icon: MessageCircle,
-  },
-  {
-    label: "Devis",
-    value: "Clair et détaillé, sous 24h.",
-    icon: FileText,
   },
   {
     label: "Suivi",
@@ -136,7 +131,7 @@ export default function Contact() {
     <section id="contact" className="scroll-mt-20 px-4 py-24 sm:px-6">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          index="05"
+          index="04"
           title="Contact"
           subtitle="Un projet, un besoin de sécurité ou simplement une question ? Écrivez-nous."
         />
@@ -144,7 +139,7 @@ export default function Contact() {
         <div className="mt-12 grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
           <Reveal delay={0.1} className="lg:sticky lg:top-28">
             <p className="font-display text-2xl font-semibold leading-snug text-zinc-50">
-              Réponse sous 24h, devis gratuit.
+              Réponse sous 24h.
             </p>
 
             <ul className="mt-8">

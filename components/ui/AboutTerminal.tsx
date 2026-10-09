@@ -23,9 +23,8 @@ const commands: Command[] = [
     cmd: "cat methode.txt",
     output: [
       "1. Échange      on écoute votre besoin, gratuitement",
-      "2. Devis        clair et détaillé, sous 24h",
-      "3. Réalisation  avec des points d'étape réguliers",
-      "4. Suivi        livraison, formation, accompagnement",
+      "2. Réalisation  avec des points d'étape réguliers",
+      "3. Suivi        livraison, formation, accompagnement",
     ],
   },
   {
@@ -34,7 +33,7 @@ const commands: Command[] = [
   },
   {
     cmd: "cat contact.txt",
-    output: ["Réponse sous 24h", "Devis gratuit"],
+    output: ["Réponse sous 24h"],
   },
 ];
 

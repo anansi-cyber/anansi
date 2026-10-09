@@ -17,7 +17,6 @@ const facts = [
   { label: "Nos métiers", value: "Développement, sécurité, IA, audit" },
   { label: "Nos clients", value: "Des TPE aux PME" },
   { label: "Premier échange", value: "Gratuit, pour comprendre votre besoin" },
-  { label: "Devis", value: "Clair et détaillé, sous 24h" },
 ];
 
 // Plan de profondeur de la colonne de texte : plus `depth` est grand, plus le
@@ -81,7 +80,7 @@ export default function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
               </span>
-              Réponse sous 24h · Devis gratuit
+              Réponse sous 24h
             </p>
           </Reveal>
           <Reveal delay={0.08}>

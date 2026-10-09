@@ -7,9 +7,8 @@ Site vitrine d'ANANSI, micro-entreprise de développement web, cybersécurité e
 ## Ce que contient le site
 
 - **Accueil** : présentation, avec une toile d'araignée en 3D que l'on peut faire tourner.
-- **Services** : développement, sécurité et pentest, intelligence artificielle, renforcement et audit. Chaque carte ouvre une fiche détaillée (déroulé, livrables, délais).
-- **Calculateur** : estimation du temps gagné avec l'IA sur les emails, devis et relances. Tout est calculé dans le navigateur.
-- **Méthode** : les quatre étapes, de l'échange au suivi.
+- **Services** : développement, sécurité et pentest, intelligence artificielle, renforcement et audit. Chaque carte ouvre une fiche détaillée (déroulé, livrables).
+- **Méthode** : les trois étapes, de l'échange au suivi.
 - **À propos** et **Contact** (formulaire envoyé par Web3Forms).
 
 ## Technologies
